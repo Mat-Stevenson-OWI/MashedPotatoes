@@ -23,9 +23,6 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void SetNickname(const FString& NewNickname) { Nickname = NewNickname; }
-	
-	UPROPERTY(BlueprintReadWrite)
-	FString PlayerNickname = TEXT("No name");
 
 protected:
 	TOptional<FString> Nickname;
