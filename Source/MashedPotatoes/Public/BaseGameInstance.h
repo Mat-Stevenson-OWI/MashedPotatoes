@@ -4,6 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "Engine/GameInstance.h"
+
+#include "Types.h"
+
 #include "BaseGameInstance.generated.h"
 
 /**
@@ -16,14 +19,17 @@ class MASHEDPOTATOES_API UBaseGameInstance : public UGameInstance
 
 public:
 	UFUNCTION(BlueprintCallable)
-	FORCEINLINE bool HasNickname() const { return Nickname.IsSet(); }
+	FORCEINLINE FString GetNickname() const { return Profile.Name; }
 
 	UFUNCTION(BlueprintCallable)
-	FORCEINLINE FString GetNickname() const { return Nickname.Get(TEXT("No name")); }
+	FORCEINLINE bool HasProfile() const { return !Profile.Name.IsEmpty(); }
 
 	UFUNCTION(BlueprintCallable)
-	void SetNickname(const FString& NewNickname) { Nickname = NewNickname; }
+	FORCEINLINE FEmployeeProfile GetProfile() const { return Profile; }
+
+	UFUNCTION(BlueprintCallable)
+	void SetProfile(const FEmployeeProfile& NewProfile) { Profile = NewProfile; }
 
 protected:
-	TOptional<FString> Nickname;
+	FEmployeeProfile Profile;
 };
