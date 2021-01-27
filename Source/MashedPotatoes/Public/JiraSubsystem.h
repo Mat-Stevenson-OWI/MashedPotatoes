@@ -18,27 +18,27 @@ enum class EJiraTicketType : uint8
 	Epic
 };
 
-USTRUCT()
+USTRUCT(BlueprintType)
 struct FJiraTicket
 {
 	GENERATED_BODY()
 
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere)
 	FName Id;
 
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere)
 	FName Description;
 
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere)
 	FName State;
 
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere)
 	FName AssignedTo;
 
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere)
 	FName Reporter;
 
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere)
 	EJiraTicketType Type;
 	
 };
