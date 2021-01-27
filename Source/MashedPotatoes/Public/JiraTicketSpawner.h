@@ -28,6 +28,8 @@ private:
 
 	UClass* GetTicketClass(EJiraTicketType Type) const;
 
+	FVector GetCellPosition(int Index, int GridSize) const;
+
 public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Jira")
@@ -37,6 +39,6 @@ public:
 	UClass* TaskTicketClass;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Jira")
-	float XOffset = 100.0f;
+	float GridCellSize = 100.0f;
 
 };

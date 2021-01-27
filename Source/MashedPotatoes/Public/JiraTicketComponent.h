@@ -3,6 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
+
+#include "JiraSubsystem.h"
 #include "Components/ActorComponent.h"
 #include "JiraTicketComponent.generated.h"
 
@@ -26,8 +28,8 @@ public:
 
 public:
 
-	UPROPERTY(BlueprintReadOnly)
-	FName TicketId;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	FJiraTicket Ticket;
 
 	
 };
