@@ -8,6 +8,16 @@
 #include "Subsystems/EngineSubsystem.h"
 #include "JiraSubsystem.generated.h"
 
+UENUM()
+enum class EJiraTicketType : uint8
+{
+	Unknown,
+	Bug,
+	Task,
+	Story,
+	Epic
+};
+
 USTRUCT()
 struct FJiraTicket
 {
@@ -27,6 +37,9 @@ struct FJiraTicket
 
 	UPROPERTY()
 	FName Reporter;
+
+	UPROPERTY()
+	EJiraTicketType Type;
 	
 };
 
@@ -34,12 +47,16 @@ struct FJiraTicket
  * 
  */
 UCLASS()
-class MASHEDPOTATOES_API UJiraSubsystem : public UEngineSubsystem
+class MASHEDPOTATOES_API UJiraSubsystem : public UGameInstanceSubsystem
 {
 	GENERATED_BODY()
 
+public:
+	
+	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
+
 	UFUNCTION()
-	FName GetProjectName() const;
+	const FName& GetProjectName() const;
 
 	UFUNCTION()
     int GetTicketCount() const;
@@ -48,5 +65,12 @@ class MASHEDPOTATOES_API UJiraSubsystem : public UEngineSubsystem
 	TArray<FName> GetTicketIds(int Start, int End) const;
 
 	UFUNCTION()
-	FJiraTicket GetTicket(const FName& TicketId) const;
+	const FJiraTicket& GetTicket(const FName& TicketId) const;
+
+public:
+
+	FName ProjectName;
+	TMap<FName, FJiraTicket> Tickets;
+	TArray<FName> States;
+	
 };
