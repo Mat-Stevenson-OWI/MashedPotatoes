@@ -22,6 +22,12 @@ void AJiraTicketSpawner::BeginPlay()
 {
 	Super::BeginPlay();
 
+	if(SpawnPoints.Num() <= 0)
+	{
+		LOG_WARNING("No spawn points defined")
+		return;
+	}
+
 	UWorld* World = GetWorld();
 
 	UJiraSubsystem* Jira = UJiraStatics::GetJira(World);
@@ -80,6 +86,8 @@ UClass* AJiraTicketSpawner::GetTicketClass(EJiraTicketType Type) const
 
 FVector AJiraTicketSpawner::GetSpawnPosition(int Index) const
 {
+	ensure(SpawnPoints.Num() > 0);
+	
 	const int SpawnIndex = Index % SpawnPoints.Num();
 	const FJiraTicketSpawnInfo& Spawn = SpawnPoints[SpawnIndex];
 
