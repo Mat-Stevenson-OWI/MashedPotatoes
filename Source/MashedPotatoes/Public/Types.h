@@ -18,9 +18,9 @@ struct FEmployeeProfile
 {
 	GENERATED_BODY()
 
-	UPROPERTY(BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FString Name;
 
-	UPROPERTY(BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	EGuild Guild;
 };
