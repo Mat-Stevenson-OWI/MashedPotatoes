@@ -3,10 +3,24 @@
 #pragma once
 
 #include "CoreMinimal.h"
+
 #include "GameFramework/Actor.h"
 #include "JiraTicketSpawner.generated.h"
 
 enum class EJiraTicketType : uint8;
+
+USTRUCT(BlueprintType)
+struct FJiraTicketSpawnInfo
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Jira")
+	AActor* Location;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Jira")
+	float Radius = 100;
+};
+
 UCLASS()
 class MASHEDPOTATOES_API AJiraTicketSpawner : public AActor
 {
@@ -28,7 +42,7 @@ private:
 
 	UClass* GetTicketClass(EJiraTicketType Type) const;
 
-	FVector GetCellPosition(int Index, int GridSize) const;
+	FVector GetSpawnPosition(int Index) const;
 
 public:
 
@@ -38,7 +52,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Jira")
 	UClass* TaskTicketClass;
 
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Jira")
-	float GridCellSize = 100.0f;
+	TArray<FJiraTicketSpawnInfo> SpawnPoints;
 
 };
