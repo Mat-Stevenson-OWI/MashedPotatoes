@@ -43,6 +43,28 @@ void UJiraSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 		EJiraTicketType::Bug,
     };
 	Tickets.Add(Ticket03.Id, Ticket03);
+
+	const FJiraTicket Ticket04 =
+	{
+		TEXT("MP-7899"),
+        TEXT("Kill this ticket"),
+        States[1],
+        TEXT("Brendan"),
+        TEXT("Andrew"),
+        EJiraTicketType::Bug,
+    };
+	Tickets.Add(Ticket04.Id, Ticket04);
+
+	const FJiraTicket Ticket05 =
+	{
+		TEXT("MP-5467"),
+        TEXT("Kill this ticket"),
+        States[1],
+        TEXT("Brendan"),
+        TEXT("Andrew"),
+        EJiraTicketType::Bug,
+    };
+	Tickets.Add(Ticket05.Id, Ticket05);
 }
 
 const FName& UJiraSubsystem::GetProjectName() const
