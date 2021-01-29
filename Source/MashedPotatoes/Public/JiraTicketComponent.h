@@ -28,7 +28,7 @@ public:
 
 public:
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Replicated)
 	FJiraTicket Ticket;
 
 	

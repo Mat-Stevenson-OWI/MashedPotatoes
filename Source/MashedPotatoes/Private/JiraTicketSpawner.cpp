@@ -29,6 +29,10 @@ void AJiraTicketSpawner::BeginPlay()
 	}
 
 	UWorld* World = GetWorld();
+	if (!IsValid(World) || !World->IsServer())
+	{
+		return;
+	}
 
 	UJiraSubsystem* Jira = UJiraStatics::GetJira(World);
 	TArray<FName> Ids = Jira->GetTicketIds(0, 0);
