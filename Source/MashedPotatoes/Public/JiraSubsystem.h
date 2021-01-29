@@ -41,7 +41,7 @@ struct FJiraTicket
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	EJiraTicketType Type;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float Progress = 0.0f;
 	
 };

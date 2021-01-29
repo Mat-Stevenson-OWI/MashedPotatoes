@@ -9,7 +9,7 @@
 #include "JiraTicketComponent.generated.h"
 
 
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+UCLASS(BlueprintType, Blueprintable, ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
 class MASHEDPOTATOES_API UJiraTicketComponent : public UActorComponent
 {
 	GENERATED_BODY()
@@ -26,9 +26,14 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
+	UFUNCTION()
+	void OnRep_Ticket();
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void BP_OnRepTicket();
 public:
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Replicated)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, ReplicatedUsing=OnRep_Ticket)
 	FJiraTicket Ticket;
 
 	

@@ -43,3 +43,8 @@ void UJiraTicketComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 	// ...
 }
 
+void UJiraTicketComponent::OnRep_Ticket()
+{
+	BP_OnRepTicket();
+}
+

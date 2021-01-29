@@ -50,7 +50,7 @@ void AJiraTicketSpawner::BeginPlay()
 			Location = GetSpawnPosition(Index);
 			LOG_INFO("Creating jira ticket %s at x=%f y=%f", *Ticket.Id.ToString(), Location.X, Location.Y);
 			AActor* TicketActor = World->SpawnActor(TicketClass, &Location, &Rotation, SpawnParams);
-			if(nullptr == TicketActor)
+			if(!IsValid(TicketActor))
 			{
 				LOG_WARNING("Failed to created jira ticket at x=%f y=%f", Location.X, Location.Y)
 			}
@@ -58,9 +58,10 @@ void AJiraTicketSpawner::BeginPlay()
 			{
 				TicketActor->Rename(*Ticket.Id.ToString());
 				UJiraTicketComponent* JiraComp = TicketActor->FindComponentByClass<UJiraTicketComponent>();
-				if(nullptr != JiraComp)
+				if(IsValid(JiraComp))
 				{
 					JiraComp->Ticket = Ticket;
+					JiraComp->OnRep_Ticket();
 				}
 				else
 				{
